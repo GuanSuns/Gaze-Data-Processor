@@ -125,7 +125,7 @@ def add_to_data_line(frameid, frameid2data, data_line='', separator=','):
     return data_line
 
 
-def save_gaze_data_asc_file_to_csv(fname, csv_dir, is_include_title=False, saved_as_plain_txt=True):
+def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=False, saved_as_plain_txt=True):
     gaze_data = read_gaze_data_asc_file(fname)
     frameid2pos = gaze_data[0]
     frameid2action = gaze_data[1]
@@ -135,9 +135,9 @@ def save_gaze_data_asc_file_to_csv(fname, csv_dir, is_include_title=False, saved
     frameid2score = gaze_data[5]
     frameid_list = gaze_data[6]
 
-    # create the csv_dir if not exists
-    if not os.path.exists(csv_dir):
-        os.makedirs(csv_dir)
+    # create the saved_dir if not exists
+    if not os.path.exists(saved_dir):
+        os.makedirs(saved_dir)
 
     # create the csv file (saved as txt file)
     csv_fname = os.path.basename(fname).split('.')[0]
@@ -145,7 +145,7 @@ def save_gaze_data_asc_file_to_csv(fname, csv_dir, is_include_title=False, saved
         csv_fname += '.txt'
     else:
         csv_fname += '.csv'
-    csv_fpath = csv_dir + '/' + csv_fname
+    csv_fpath = saved_dir + '/' + csv_fname
     csv_file = open(csv_fpath, 'w')
 
     # define the separator in csv file
