@@ -91,7 +91,7 @@ def read_gaze_data_asc_file(fname):
         match_score = score_msg.match(line)
         if match_score:
             timestamp, score = match_score.group(1), match_score.group(2)
-            assert frameid not in frameid2episode, "ERROR: there is more than 1 score for frame id %s. Not supposed to happen." % str(
+            assert frameid not in frameid2score, "ERROR: there is more than 1 score for frame id %s. Not supposed to happen." % str(
                 frameid)
             frameid2score[frameid] = int(score)
             continue
@@ -113,7 +113,8 @@ def read_gaze_data_asc_file(fname):
 
 
 def make_unique_frame_id(UTID, frameid):
-    return (hash(UTID), int(frameid))
+    # noinspection PyRedundantParentheses
+    return (UTID, int(frameid))
 
 
 def add_to_data_line(frameid, frameid2data, data_line='', separator=','):
@@ -124,7 +125,7 @@ def add_to_data_line(frameid, frameid2data, data_line='', separator=','):
     return data_line
 
 
-def save_gaze_data_asc_file_to_csv(fname, csv_dir, is_include_title=False):
+def save_gaze_data_asc_file_to_csv(fname, csv_dir, is_include_title=False, saved_as_plain_txt=True):
     gaze_data = read_gaze_data_asc_file(fname)
     frameid2pos = gaze_data[0]
     frameid2action = gaze_data[1]
@@ -138,8 +139,12 @@ def save_gaze_data_asc_file_to_csv(fname, csv_dir, is_include_title=False):
     if not os.path.exists(csv_dir):
         os.makedirs(csv_dir)
 
-    # create the csv file
-    csv_fname = os.path.basename(fname).split('.')[0] + '.csv'
+    # create the csv file (saved as txt file)
+    csv_fname = os.path.basename(fname).split('.')[0]
+    if saved_as_plain_txt:
+        csv_fname += '.txt'
+    else:
+        csv_fname += '.csv'
     csv_fpath = csv_dir + '/' + csv_fname
     csv_file = open(csv_fpath, 'w')
 
