@@ -36,7 +36,7 @@ def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=False, sav
         csv_fname += '.txt'
     else:
         csv_fname += '.csv'
-    csv_fpath = saved_dir + '/' + csv_fname
+    csv_fpath = os.path.join(saved_dir, csv_fname)
     csv_file = open(csv_fpath, 'w')
 
     # define the separator in csv file
@@ -81,6 +81,14 @@ def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=False, sav
     csv_file.close()
 
 
+def save_asc_file_in_dir_to_csv(dir, saved_dir, is_include_title=False, saved_as_plain_txt=True):
+    for fname in os.listdir(dir):
+        if fname.endswith(".asc"):
+            fpath = os.path.join(dir, fname)
+            print('Processing asc file: ' + fpath)
+            save_gaze_data_asc_file_to_csv(fpath, saved_dir, is_include_title, saved_as_plain_txt)
+
+
 if __name__ == '__main__':
-    save_gaze_data_asc_file_to_csv('/Users/lguan/Documents/Study/Research/Gaze-Dataset/data/191_JAW_9955253_Jun-25-14-35-04.asc', '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_cleaning/csv', True)
+    save_asc_file_in_dir_to_csv('/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_dir', '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv')
 

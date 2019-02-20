@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/data_cleaning.iml" filepath="$PROJECT_DIR$/.idea/data_cleaning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/data_processing.iml" filepath="$PROJECT_DIR$/.idea/data_processing.iml" />
     </modules>
   </component>
 </project>
