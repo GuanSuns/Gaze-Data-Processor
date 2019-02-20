@@ -2,6 +2,7 @@
 #
 # Clean up dataset in the format of image, action, gaze, reward
 # Each dataset of episode, total points
+# CSV File Format: frameid,episode_id,score,duration,unclipped_reward,action,pos
 # -----------------------
 
 import os
@@ -81,14 +82,14 @@ def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=False, sav
     csv_file.close()
 
 
-def save_asc_file_in_dir_to_csv(dir, saved_dir, is_include_title=False, saved_as_plain_txt=True):
-    for fname in os.listdir(dir):
+def save_asc_file_in_dir_to_csv(asc_dir, saved_dir, is_include_title=False, saved_as_plain_txt=True):
+    for fname in os.listdir(asc_dir):
         if fname.endswith(".asc"):
-            fpath = os.path.join(dir, fname)
+            fpath = os.path.join(asc_dir, fname)
             print('Processing asc file: ' + fpath)
             save_gaze_data_asc_file_to_csv(fpath, saved_dir, is_include_title, saved_as_plain_txt)
 
 
 if __name__ == '__main__':
-    save_asc_file_in_dir_to_csv('/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_dir', '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv')
+    save_asc_file_in_dir_to_csv('/Users/lguan/Documents/Study/Research/Gaze-Dataset/data', '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv')
 
