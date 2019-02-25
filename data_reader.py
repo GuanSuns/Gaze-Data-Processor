@@ -22,6 +22,7 @@ def read_gaze_data_asc_file(fname):
     frameid2unclipped_reward = {frameid: None}
     frameid2episode = {frameid: None}
     frameid2score = {frameid: None}
+    file_meta_data = {'avg_error': None, 'max_error': None, 'low_sample_rate': None, 'total_frame': None}
     # frame id list (exclude the 'BEFORE-FIRST-FRAME')
     frameid_list = []
     start_timestamp = 0
@@ -39,6 +40,9 @@ def read_gaze_data_asc_file(fname):
     episode_msg = re.compile(r"MSG\s+(\d+)\s+episode (\d+)")
     # regex for score message
     score_msg = re.compile(r"MSG\s+(\d+)\s+score (\d+)")
+    # regex for meta data (validation)
+    validation_msg = re.compile(r"MSG\s+(\d+)\s+!CAL\sVALIDATION.+ERROR\s+(%s)\s+avg\.\s+(%s)\s+max\s+OFFSET.+" % (freg, freg))
+
 
     for (i, line) in enumerate(lines):
         match_sample = gaze_msg.match(line)
@@ -94,6 +98,14 @@ def read_gaze_data_asc_file(fname):
             frameid2score[frameid] = int(score)
             continue
 
+        match_validation = validation_msg.match(line)
+        if match_validation:
+            avg_error, max_error = match_validation.group(2), match_validation.group(3)
+            # replace the old value since we will only use the validation data after the last frame
+            file_meta_data['avg_error'] = float(avg_error)
+            file_meta_data['max_error'] = float(max_error)
+            continue
+
     # throw out gazes after the last frame, because the game has ended but eye tracker keeps recording
     frameid2pos[frameid] = []
 
@@ -102,13 +114,17 @@ def read_gaze_data_asc_file(fname):
         raw_input("Press any key to continue")
 
     few_cnt = 0
+    n_frame = len(frameid2pos)
     for v in frameid2pos.values():
         if len(v) < 10:
             few_cnt += 1
     print ("Warning:  %d frames have less than 10 gaze samples. (%.1f%%, total frame: %d)" %
-           (few_cnt, 100.0*few_cnt/len(frameid2pos), len(frameid2pos)))
+           (few_cnt, 100.0*few_cnt/n_frame, n_frame))
+    # save the values to meta data
+    file_meta_data['low_sample_rate'] = "{:.1f}".format(100.0*float(few_cnt)/float(n_frame)) + "%"
+    file_meta_data['total_frame'] = n_frame
 
-    return frameid2pos, frameid2action, frameid2duration, frameid2unclipped_reward, frameid2episode, frameid2score, frameid_list
+    return frameid2pos, frameid2action, frameid2duration, frameid2unclipped_reward, frameid2episode, frameid2score, frameid_list, file_meta_data
 
 
 def make_unique_frame_id(UTID, frameid):

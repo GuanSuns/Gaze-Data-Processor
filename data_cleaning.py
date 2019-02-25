@@ -6,6 +6,8 @@
 # -----------------------
 
 import os
+import re
+import time
 import data_reader
 
 
@@ -17,7 +19,7 @@ def add_to_data_line(frameid, frameid2data, data_line='', separator=','):
     return data_line
 
 
-def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=False, saved_as_plain_txt=True):
+def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=True, saved_as_plain_txt=True):
     gaze_data = data_reader.read_gaze_data_asc_file(fname)
     frameid2pos = gaze_data[0]
     frameid2action = gaze_data[1]
@@ -26,6 +28,7 @@ def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=False, sav
     frameid2episode = gaze_data[4]
     frameid2score = gaze_data[5]
     frameid_list = gaze_data[6]
+    file_meta_data = gaze_data[7]
 
     # create the saved_dir if not exists
     if not os.path.exists(saved_dir):
@@ -81,15 +84,31 @@ def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=False, sav
     # close the file
     csv_file.close()
 
+    # return the meta data
+    return file_meta_data
 
-def save_asc_file_in_dir_to_csv(asc_dir, saved_dir, is_include_title=False, saved_as_plain_txt=True):
+
+def save_asc_files_in_dir_to_csv(asc_dir, saved_dir, fname_regex='.', is_include_title=True, saved_as_plain_txt=True):
+    # create the saved_dir if not exists (to store meta data)
+    if not os.path.exists(saved_dir):
+        os.makedirs(saved_dir)
+
+    fname_meta_data = str(int(time.time() * 1000)) + '_meta.txt'
+    meta_fpath = os.path.join(saved_dir, fname_meta_data)
+    meta_file = open(meta_fpath, 'w')
+
+    fname_format = re.compile(fname_regex)
     for fname in os.listdir(asc_dir):
-        if fname.endswith(".asc"):
+        if fname.endswith(".asc") and fname_format.match(fname):
             fpath = os.path.join(asc_dir, fname)
             print('Processing asc file: ' + fpath)
-            save_gaze_data_asc_file_to_csv(fpath, saved_dir, is_include_title, saved_as_plain_txt)
+            file_meta_data = save_gaze_data_asc_file_to_csv(fpath, saved_dir, is_include_title, saved_as_plain_txt)
+            # write the meta data
+            meta_file.write('\'' + fname + '\'' + ':' + str(file_meta_data) + '\n')
+    # close the meta data file
+    meta_file.close()
 
 
 if __name__ == '__main__':
-    save_asc_file_in_dir_to_csv('/Users/lguan/Documents/Study/Research/Gaze-Dataset/data', '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv')
+    save_asc_files_in_dir_to_csv('/Users/lguan/Documents/Study/Research/Gaze-Dataset/data', '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv')
 
