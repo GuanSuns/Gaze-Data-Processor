@@ -7,7 +7,6 @@ import os
 import re
 import data_reader
 import utils
-import xlsxwriter
 
 
 def do_per_game_stat(csv_dir, fname_regex='.*_.*_.*\.txt', is_ignore_null=False, func_fname_condition=None):
@@ -140,60 +139,59 @@ def do_per_trial_stat(csv_dir, saved_dir=None, fname_regex='.*_.*_.*\.txt', is_i
             episode_max_cumulative_reward = -float('inf')
             episode_time = 0
             episode_cumulative_reward = 0
-            episode_frame = 0
             current_episode = None
 
-            cnt_frame = 0
+            n_frame = len(frameid_list)
             cnt_episode = 0
             game_play_time = 0
 
-            for frameid in frameid_list:
+            for i_frame, frameid in enumerate(frameid_list):
                 duration = frameid2duration[frameid]
                 unclipped_reward = frameid2unclipped_reward[frameid]
                 episode_id = frameid2episode[frameid]
                 score = frameid2score[frameid]
 
+                # check if there are None values
                 if is_ignore_null:
                     if duration is None or unclipped_reward is None or episode_id is None or score is None:
                         break
 
                 # if it's a new episode
                 if episode_id is not None and episode_id != current_episode:
-                    # compute the stat data for previous episode
-                    if episode_max_cumulative_reward != -float('inf'):
-                        trial_lowest_cumulative_reward = min(trial_lowest_cumulative_reward, episode_max_cumulative_reward)
-                    trial_highest_cumulative_reward = max(trial_highest_cumulative_reward, episode_max_cumulative_reward)
-                    if episode_max_score != -float('inf'):
+                    # if it's not the beginning of the first episode
+                    if i_frame != 0:
+                        # compute the stat data for previous episode
+                        trial_lowest_cumulative_reward = min(trial_lowest_cumulative_reward,
+                                                             episode_max_cumulative_reward)
+                        trial_highest_cumulative_reward = max(trial_highest_cumulative_reward,
+                                                              episode_max_cumulative_reward)
                         trial_lowest_score = min(trial_lowest_score, episode_max_score)
-                    trial_highest_score = max(trial_highest_score, episode_max_score)
-                    cnt_frame += episode_frame
-                    if current_episode is not None:
+                        trial_highest_score = max(trial_highest_score, episode_max_score)
                         cnt_episode += 1
-                    game_play_time += episode_time
 
-                    # reset the stat variables
+                    # reset the stat variables for the new episode
                     episode_time = utils.set_value_by_int(0, duration)
-                    episode_frame = 1
                     episode_max_score = utils.set_value_by_int(0, score)
                     episode_max_cumulative_reward = utils.set_value_by_int(0, unclipped_reward)
                     episode_cumulative_reward = unclipped_reward
                     current_episode = episode_id
+
+                    game_play_time += episode_time
+                # compute the stat data for the last episode
+                elif i_frame == n_frame - 1:
+                    game_play_time += episode_time
+                    cnt_episode += 1
+                    trial_lowest_cumulative_reward = min(trial_lowest_cumulative_reward, episode_max_cumulative_reward)
+                    trial_highest_cumulative_reward = max(trial_highest_cumulative_reward,
+                                                          episode_max_cumulative_reward)
+                    trial_lowest_score = min(trial_lowest_score, episode_max_score)
+                    trial_highest_score = max(trial_highest_score, episode_max_score)
                 # if it's still in the same episode
                 else:
                     episode_time = utils.increment_by_int(episode_time, duration)
-                    episode_frame += 1
                     episode_cumulative_reward = utils.increment_by_int(episode_cumulative_reward, unclipped_reward)
                     episode_max_cumulative_reward = max(episode_max_cumulative_reward, episode_cumulative_reward)
                     episode_max_score = max(episode_max_score, utils.set_value_by_int(episode_max_score, score))
-
-            # compute the stat data for the last episode
-            game_play_time += episode_time
-            cnt_frame += episode_frame
-            cnt_episode += 1
-            trial_lowest_cumulative_reward = min(trial_lowest_cumulative_reward, episode_max_cumulative_reward)
-            trial_highest_cumulative_reward = max(trial_highest_cumulative_reward, episode_max_cumulative_reward)
-            trial_lowest_score = min(trial_lowest_score, episode_max_score)
-            trial_highest_score = max(trial_highest_score, episode_max_score)
 
             # display the result
             trial_stat_dict['highest_score'] = trial_highest_score
@@ -201,7 +199,7 @@ def do_per_trial_stat(csv_dir, saved_dir=None, fname_regex='.*_.*_.*\.txt', is_i
             trial_stat_dict['highest_cumulative_score'] = trial_highest_cumulative_reward
             trial_stat_dict['lowest_cumulative_score'] = trial_lowest_cumulative_reward
             trial_stat_dict['total_episode'] = cnt_episode
-            trial_stat_dict['total_frame'] = cnt_frame
+            trial_stat_dict['total_frame'] = n_frame
             trial_stat_dict['total_game_play_time'] = game_play_time
             stat_dict[trial_id] = trial_stat_dict
             print('Statistics results from trial %d: ' % trial_id)
@@ -214,39 +212,8 @@ def do_per_trial_stat(csv_dir, saved_dir=None, fname_regex='.*_.*_.*\.txt', is_i
 
     # save the data to excel then return
     if saved_dir is not None:
-        save_stat_data_to_excel(saved_dir, stat_dict)
+        utils.save_trials_data_to_excel(saved_dir, 'stat_data.xlsx', stat_dict)
     return stat_dict
-
-
-def save_stat_data_to_excel(saved_dir, stat_dict):
-    if not os.path.exists(saved_dir):
-        os.makedirs(saved_dir)
-    fname = 'stat_data.xlsx'
-    fpath = os.path.join(saved_dir, fname)
-    workbook = xlsxwriter.Workbook(fpath)
-    worksheet = workbook.add_worksheet()
-
-    row = 0
-    col = 0
-    for trial_id in stat_dict.keys():
-        # write column names first
-        if row == 0:
-            worksheet.write(0, 0, 'trial_id')
-            col += 1
-            for col_name in stat_dict[trial_id].keys():
-                worksheet.write(row, col, col_name)
-                col += 1
-        # write the data
-        row += 1
-        col = 0
-        worksheet.write(row, col, trial_id)
-
-        trial_stat = stat_dict[trial_id]
-        for col_name, value in trial_stat.items():
-            worksheet.write(row, col+1, value)
-            col += 1
-    # close the file and save the data
-    workbook.close()
 
 
 def fname_condition(fname):
