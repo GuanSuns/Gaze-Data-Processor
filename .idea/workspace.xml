@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="276395a2-29ea-4c81-ada1-5de07d39eccb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/lguan.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/lguan.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_cleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_cleaning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_stat.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_stat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,8 +15,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/data_processing$data_stat.coverage" NAME="data_stat Coverage Results" MODIFIED="1550644482697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/data_processing$data_cleaning.coverage" NAME="data_cleaning Coverage Results" MODIFIED="1550868401104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/data_processing$data_stat.coverage" NAME="data_stat Coverage Results" MODIFIED="1551823671930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/data_processing$data_cleaning.coverage" NAME="data_cleaning Coverage Results" MODIFIED="1551818323334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-405180007">
@@ -23,62 +25,77 @@
           <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="10" />
+          <entry key="py" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="10" />
+          <entry key="Python" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="83" />
-          <entry key="py" value="3774" />
+          <entry key="Python Console" value="111" />
+          <entry key="py" value="5147" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="3857" />
+          <entry key="Python" value="5258" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_cleaning.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1025">
-              <caret line="108" column="21" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="21" />
+            <state relative-caret-position="-104">
+              <caret line="93" column="30" lean-forward="true" selection-start-line="92" selection-start-column="4" selection-end-line="93" selection-end-column="30" />
               <folding>
                 <element signature="e#233#242#0" expanded="true" />
-                <marker date="1550860660291" expanded="true" signature="3268:4098" ph="..." />
-                <marker date="1550860660291" expanded="true" signature="4097:4098" ph="..." />
+                <marker date="1551818303995" expanded="true" signature="3268:4144" ph="..." />
+                <marker date="1551818303995" expanded="true" signature="4143:4144" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-761">
-              <caret line="121" column="53" selection-start-line="121" selection-start-column="53" selection-end-line="121" selection-end-column="53" />
+            <state relative-caret-position="-1722">
+              <caret line="104" column="26" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data_stat.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="168" column="51" lean-forward="true" selection-start-line="168" selection-start-column="51" selection-end-line="168" selection-end-column="51" />
+              <folding>
+                <element signature="e#125#134#0" expanded="true" />
+                <marker date="1551823588894" expanded="true" signature="10160:10888" ph="..." />
+                <marker date="1551823588894" expanded="true" signature="10915:10984" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_stat.py">
+        <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-417">
-              <caret line="24" column="37" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="37" />
+            <state relative-caret-position="352">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -98,10 +115,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/data_reader.py" />
+        <option value="$PROJECT_DIR$/data_cleaning.py" />
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/data_stat.py" />
-        <option value="$PROJECT_DIR$/data_cleaning.py" />
-        <option value="$PROJECT_DIR$/data_reader.py" />
       </list>
     </option>
   </component>
@@ -125,6 +142,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -140,7 +158,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -162,7 +179,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.data_cleaning">
+  <component name="RunManager" selected="Python.data_stat">
     <configuration name="data_cleaning" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="data_processing" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -213,8 +230,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.data_cleaning" />
         <item itemvalue="Python.data_stat" />
+        <item itemvalue="Python.data_cleaning" />
       </list>
     </recent_temporary>
   </component>
@@ -235,12 +252,12 @@
     <frame x="122" y="45" width="1269" height="925" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2828036" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28687856" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32893157" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996353" weight="0.32893157" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4996353" visible="true" weight="0.32893157" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39975992" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -265,13 +282,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/env-tensorflow-py2.7/lib/python2.7/re.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -279,29 +289,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_stat.py">
+    <entry file="file://$PROJECT_DIR$/data_reader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-417">
-          <caret line="24" column="37" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="37" />
+        <state relative-caret-position="-1722">
+          <caret line="104" column="26" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data_cleaning.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1025">
-          <caret line="108" column="21" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="21" />
+        <state relative-caret-position="-104">
+          <caret line="93" column="30" lean-forward="true" selection-start-line="92" selection-start-column="4" selection-end-line="93" selection-end-column="30" />
           <folding>
             <element signature="e#233#242#0" expanded="true" />
-            <marker date="1550860660291" expanded="true" signature="3268:4098" ph="..." />
-            <marker date="1550860660291" expanded="true" signature="4097:4098" ph="..." />
+            <marker date="1551818303995" expanded="true" signature="3268:4144" ph="..." />
+            <marker date="1551818303995" expanded="true" signature="4143:4144" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_reader.py">
+    <entry file="file://$PROJECT_DIR$/data_stat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-761">
-          <caret line="121" column="53" selection-start-line="121" selection-start-column="53" selection-end-line="121" selection-end-column="53" />
+        <state relative-caret-position="200">
+          <caret line="168" column="51" lean-forward="true" selection-start-line="168" selection-start-column="51" selection-end-line="168" selection-end-column="51" />
+          <folding>
+            <element signature="e#125#134#0" expanded="true" />
+            <marker date="1551823588894" expanded="true" signature="10160:10888" ph="..." />
+            <marker date="1551823588894" expanded="true" signature="10915:10984" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

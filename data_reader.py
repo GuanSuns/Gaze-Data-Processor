@@ -43,7 +43,6 @@ def read_gaze_data_asc_file(fname):
     # regex for meta data (validation)
     validation_msg = re.compile(r"MSG\s+(\d+)\s+!CAL\sVALIDATION.+ERROR\s+(%s)\s+avg\.\s+(%s)\s+max\s+OFFSET.+" % (freg, freg))
 
-
     for (i, line) in enumerate(lines):
         match_sample = gaze_msg.match(line)
         if match_sample:

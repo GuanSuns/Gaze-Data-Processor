@@ -104,7 +104,8 @@ def save_asc_files_in_dir_to_csv(asc_dir, saved_dir, fname_regex='.', is_include
             print('Processing asc file: ' + fpath)
             file_meta_data = save_gaze_data_asc_file_to_csv(fpath, saved_dir, is_include_title, saved_as_plain_txt)
             # write the meta data
-            meta_file.write('\'' + fname + '\'' + ':' + str(file_meta_data) + '\n')
+            trial_id = fname.split('.')[0]
+            meta_file.write('\'' + trial_id + '\'' + ':' + str(file_meta_data) + '\n')
     # close the meta data file
     meta_file.close()
 
