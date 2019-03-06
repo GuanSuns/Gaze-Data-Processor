@@ -113,7 +113,7 @@ def read_gaze_data_asc_file(fname):
         raw_input("Press any key to continue")
 
     few_cnt = 0
-    n_frame = len(frameid2pos)
+    n_frame = len(frameid_list)
     for v in frameid2pos.values():
         if len(v) < 10:
             few_cnt += 1

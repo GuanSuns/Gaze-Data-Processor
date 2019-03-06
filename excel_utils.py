@@ -38,7 +38,7 @@ def fill_excel_col(dest_excel_fname, dest_col_name, dest_id_col_name, dest_sheet
     edited_excel_fname = '' + os.path.basename(dest_excel_fname)
     edited_excel_dir = os.path.dirname(dest_excel_fname)
     edited_destinated_excel = xlsxwriter.Workbook(os.path.join(edited_excel_dir, edited_excel_fname))
-    edited_destinated_sheet = edited_destinated_excel.add_worksheet(destinated_sheet_name)
+    edited_destinated_sheet = edited_destinated_excel.add_worksheet(dest_sheet_name)
 
     # find destinated id column index
     destinated_id_col_index = 0
@@ -96,8 +96,8 @@ def func_to_float(value):
     return float(value)
 
 
-if __name__ == '__main__':
-    sour_excel_fname = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv/1551846098049_meta.xlsx'
+def fill_meta_data():
+    sour_excel_fname = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv/1551855712069_meta.xlsx'
     sour_id_name = 'trial_id'
     sour_col_names = ['total_frame', 'avg_error']
     sour_sheet_name = 'Sheet1'
@@ -106,7 +106,26 @@ if __name__ == '__main__':
     destinated_col_names = ['NumberOfFrames', 'AverageValError']
     destinated_sheet_name = 'Sheet1'
     # print(read_excel(source_excel_fname, source_id_name, func_id_data_type=func_to_int))
-    fill_excel_cols(destinated_excel_fname, destinated_col_names, destinated_id_name, destinated_sheet_name, sour_excel_fname, sour_col_names, sour_id_name, sour_sheet_name, func_to_float)
+    fill_excel_cols(destinated_excel_fname, destinated_col_names, destinated_id_name, destinated_sheet_name,
+                    sour_excel_fname, sour_col_names, sour_id_name, sour_sheet_name, func_to_float)
+
+
+def fill_score_data():
+    sour_excel_fname = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv/stat_data.xlsx'
+    sour_id_name = 'trial_id'
+    sour_col_names = ['highest_score']
+    sour_sheet_name = 'Sheet1'
+    destinated_excel_fname = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv/table.xlsx'
+    destinated_id_name = 'TrialNumber'
+    destinated_col_names = ['BestScore']
+    destinated_sheet_name = 'Sheet1'
+    # print(read_excel(source_excel_fname, source_id_name, func_id_data_type=func_to_int))
+    fill_excel_cols(destinated_excel_fname, destinated_col_names, destinated_id_name, destinated_sheet_name,
+                    sour_excel_fname, sour_col_names, sour_id_name, sour_sheet_name, func_to_float)
+
+
+if __name__ == '__main__':
+    fill_score_data()
 
 
 
