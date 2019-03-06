@@ -9,6 +9,7 @@ import os
 import re
 import time
 import data_reader
+import utils
 
 
 def add_to_data_line(frameid, frameid2data, data_line='', separator=','):
@@ -88,14 +89,18 @@ def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=True, save
     return file_meta_data
 
 
-def save_asc_files_in_dir_to_csv(asc_dir, saved_dir, fname_regex='.', is_include_title=True, saved_as_plain_txt=True):
+def save_asc_files_in_dir_to_csv(asc_dir, saved_dir, fname_regex='.', is_include_title=True, saved_as_plain_txt=True, saved_to_excel=True):
     # create the saved_dir if not exists (to store meta data)
     if not os.path.exists(saved_dir):
         os.makedirs(saved_dir)
 
-    fname_meta_data = str(int(time.time() * 1000)) + '_meta.txt'
+    str_timestamp = str(int(time.time() * 1000))
+    fname_meta_data = str_timestamp + '_meta.txt'
     meta_fpath = os.path.join(saved_dir, fname_meta_data)
     meta_file = open(meta_fpath, 'w')
+
+    meta_data_dict = {}
+    fname_meta_excel = str_timestamp + '_meta.xlsx'
 
     fname_format = re.compile(fname_regex)
     for fname in os.listdir(asc_dir):
@@ -104,12 +109,21 @@ def save_asc_files_in_dir_to_csv(asc_dir, saved_dir, fname_regex='.', is_include
             print('Processing asc file: ' + fpath)
             file_meta_data = save_gaze_data_asc_file_to_csv(fpath, saved_dir, is_include_title, saved_as_plain_txt)
             # write the meta data
-            trial_id = fname.split('.')[0]
-            meta_file.write('\'' + trial_id + '\'' + ':' + str(file_meta_data) + '\n')
+            trial_id = int(fname.split('_')[0])
+            meta_file.write('\'' + str(trial_id) + '\'' + ':' + str(file_meta_data) + '\n')
+            meta_data_dict[trial_id] = file_meta_data
     # close the meta data file
     meta_file.close()
+    # save the mata data to excel file
+    if saved_to_excel:
+        utils.save_trials_data_to_excel(saved_dir, fname_meta_excel, meta_data_dict)
+    return meta_data_dict
 
 
 if __name__ == '__main__':
-    save_asc_files_in_dir_to_csv('/Users/lguan/Documents/Study/Research/Gaze-Dataset/data', '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv')
+    data_dir = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data'
+    csv_dir = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv'
+    testing_csv_dir = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/testing_csv_dir'
+    testing_data_dir = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/testing_data_dir'
+    save_asc_files_in_dir_to_csv(data_dir, csv_dir)
 

@@ -177,7 +177,7 @@ def do_per_trial_stat(csv_dir, saved_dir=None, fname_regex='.*_.*_.*\.txt', is_i
                     current_episode = episode_id
 
                     game_play_time += episode_time
-                # compute the stat data for the last episode
+                # compute the stat data for the last frame of the last episode
                 elif i_frame == n_frame - 1:
                     game_play_time += episode_time
                     cnt_episode += 1
@@ -193,7 +193,7 @@ def do_per_trial_stat(csv_dir, saved_dir=None, fname_regex='.*_.*_.*\.txt', is_i
                     episode_max_cumulative_reward = max(episode_max_cumulative_reward, episode_cumulative_reward)
                     episode_max_score = max(episode_max_score, utils.set_value_by_int(episode_max_score, score))
 
-            # display the result
+            # save and display the result
             trial_stat_dict['highest_score'] = trial_highest_score
             trial_stat_dict['lowest_score'] = trial_lowest_score
             trial_stat_dict['highest_cumulative_score'] = trial_highest_cumulative_reward
