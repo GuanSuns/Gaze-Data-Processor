@@ -7,6 +7,7 @@ import os
 import re
 import data_reader
 import utils
+import math
 
 
 def do_per_game_stat(csv_dir, fname_regex='.*_.*_.*\.txt', is_ignore_null=False, func_fname_condition=None):
@@ -194,7 +195,11 @@ def do_per_trial_stat(csv_dir, saved_dir=None, fname_regex='.*_.*_.*\.txt', is_i
                     episode_max_score = max(episode_max_score, utils.set_value_by_int(episode_max_score, score))
 
             # save and display the result
+            if trial_highest_score == float('inf') or trial_highest_score == -float('inf'):
+                trial_highest_score = 0
             trial_stat_dict['highest_score'] = trial_highest_score
+            if trial_lowest_score == float('inf') or trial_lowest_score == -float('inf'):
+                trial_lowest_score = 0
             trial_stat_dict['lowest_score'] = trial_lowest_score
             trial_stat_dict['highest_cumulative_score'] = trial_highest_cumulative_reward
             trial_stat_dict['lowest_cumulative_score'] = trial_lowest_cumulative_reward
@@ -218,12 +223,18 @@ def do_per_trial_stat(csv_dir, saved_dir=None, fname_regex='.*_.*_.*\.txt', is_i
 
 def fname_condition(fname):
     trial_id = int(fname.split('_')[0])
-    return trial_id > 178
+    return trial_id > 0
 
 
-if __name__ == '__main__':
+def do_testing():
+    testing_data_dir = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/testing_csv_dir'
+    do_per_trial_stat(csv_dir=testing_data_dir, saved_dir=testing_data_dir, func_fname_condition=fname_condition)
+
+
+def do_stat():
     data_dir = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv'
     do_per_trial_stat(csv_dir=data_dir, saved_dir=data_dir, func_fname_condition=fname_condition)
 
 
-
+if __name__ == '__main__':
+    do_testing()

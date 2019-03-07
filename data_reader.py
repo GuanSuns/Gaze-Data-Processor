@@ -131,7 +131,7 @@ def make_unique_frame_id(UTID, frameid):
     return (UTID, int(frameid))
 
 
-def read_gaze_data_csv_file(fname, separator=',', pos_separator=' '):
+def read_gaze_data_csv_file(fname, separator=',', pos_separator=','):
     """ This function reads a csv file and returns
             a dictionary mapping frame ID to a list of gaze positions,
             a dictionary mapping frame ID to action """
@@ -149,7 +149,7 @@ def read_gaze_data_csv_file(fname, separator=',', pos_separator=' '):
 
     for (i, line) in enumerate(lines):
         # for the first line, check if titles (column names) are included
-        if i == 0 and 'frameid' in line:
+        if i == 0 and 'frame' in line:
             continue
 
         # parse each section: frameid,episode_id,score,duration,unclipped_reward,action,pos
@@ -197,7 +197,11 @@ def read_gaze_data_csv_file(fname, separator=',', pos_separator=' '):
         if pos_data == 'null':
             frameid2pos[frameid] = None
         else:
-            pos_data_list = pos_data.split(pos_separator)
+            # if the separator and the pos separator are the same
+            if separator == pos_separator:
+                pos_data_list = data_line[6:]
+            else:
+                pos_data_list = pos_data.split(pos_separator)
             pos_list = []
             n_pos = len(pos_data_list) / 2
             for j in range(0, n_pos):

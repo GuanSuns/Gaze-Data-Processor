@@ -46,11 +46,11 @@ def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=True, save
 
     # define the separator in csv file
     separator = ','
-    pos_separator = ' '
+    pos_separator = ','
 
     # write the title information if is_include_title is set
     if is_include_title:
-        titles = 'frameid,episode_id,score,duration,unclipped_reward,action,pos\n'
+        titles = 'frame_id,episode_id,score,duration(ms),unclipped_reward,action,gaze_positions\n'
         csv_file.write(titles)
 
     # save the data to the file
@@ -75,7 +75,7 @@ def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=True, save
                 data_line += 'null'
             else:
                 for i in range(0, n_pos):
-                    data_line = data_line + str(pos_list[i][0]) + pos_separator + str(pos_list[i][1])
+                    data_line = data_line + str(pos_list[i][0]/8.0) + pos_separator + str(pos_list[i][1]/4.0)
                     if i < n_pos-1:
                         data_line += pos_separator
         else:
@@ -120,10 +120,18 @@ def save_asc_files_in_dir_to_csv(asc_dir, saved_dir, fname_regex='.', is_include
     return meta_data_dict
 
 
-if __name__ == '__main__':
+def do_data_cleaning():
     data_dir = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data'
     csv_dir = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/data_processing/csv'
+    save_asc_files_in_dir_to_csv(data_dir, csv_dir)
+
+
+def do_testing():
     testing_csv_dir = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/testing_csv_dir'
     testing_data_dir = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/testing_data_dir'
-    save_asc_files_in_dir_to_csv(data_dir, csv_dir)
+    save_asc_files_in_dir_to_csv(testing_data_dir, testing_csv_dir)
+
+
+if __name__ == '__main__':
+    do_testing()
 
