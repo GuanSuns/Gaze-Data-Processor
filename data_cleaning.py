@@ -75,7 +75,7 @@ def save_gaze_data_asc_file_to_csv(fname, saved_dir, is_include_title=True, save
                 data_line += 'null'
             else:
                 for i in range(0, n_pos):
-                    data_line = data_line + str(pos_list[i][0]/8.0) + pos_separator + str(pos_list[i][1]/4.0)
+                    data_line = data_line + format(pos_list[i][0]/8.0, '.2f') + pos_separator + format(pos_list[i][1]/4.0, '.2f')
                     if i < n_pos-1:
                         data_line += pos_separator
         else:
