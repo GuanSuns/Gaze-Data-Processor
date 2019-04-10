@@ -5,9 +5,9 @@
 
 import os
 import re
+import sys
 import data_reader
 import utils
-import math
 
 
 def do_per_game_stat(csv_dir, fname_regex='.*_.*_.*\.txt', is_ignore_null=False, func_fname_condition=None):
@@ -227,7 +227,7 @@ def fname_condition(fname):
 
 
 def do_testing():
-    testing_data_dir = '/Users/lguan/Documents/Study/Research/Gaze-Dataset/testing_csv_dir'
+    testing_data_dir = '/Users/lguan/Documents/Study/Research/UT Austin/Gaze-Dataset/testing_csv_dir'
     do_per_trial_stat(csv_dir=testing_data_dir, saved_dir=testing_data_dir, func_fname_condition=fname_condition)
 
 
@@ -237,4 +237,10 @@ def do_stat():
 
 
 if __name__ == '__main__':
-    do_testing()
+    if len(sys.argv) < 3:
+        print('Usage: python data_stat.py source_dir saved_dir')
+
+    source_dir = sys.argv[1]
+    saved_dir = sys.argv[2]
+
+    do_per_trial_stat(source_dir, saved_dir)
