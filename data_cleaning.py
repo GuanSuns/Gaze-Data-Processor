@@ -7,6 +7,7 @@
 
 import os
 import re
+import sys
 import time
 import data_reader
 import utils
@@ -133,5 +134,20 @@ def do_testing():
 
 
 if __name__ == '__main__':
-    do_testing()
+    if len(sys.argv) < 3:
+        print('Usage: python data_cleaning.py source_dir dest_dir [whether to include titles in txt file]')
+
+    source_dir = sys.argv[1]
+    dest_dir = sys.argv[2]
+    include_title = True
+    if len(sys.argv) == 4:
+        if sys.argv[3].lower() == 'true':
+            include_title = True
+        elif sys.argv[3].lower() == 'false':
+            include_title = False
+        else:
+            print('For the third argument, please use True or False')
+
+    save_asc_files_in_dir_to_csv(source_dir, dest_dir)
+
 
