@@ -136,6 +136,7 @@ def do_testing():
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         print('Usage: python data_cleaning.py source_dir dest_dir [whether to include titles in txt file]')
+        exit(1)
 
     source_dir = sys.argv[1]
     dest_dir = sys.argv[2]
@@ -147,7 +148,8 @@ if __name__ == '__main__':
             include_title = False
         else:
             print('For the third argument, please use True or False')
+            exit(1)
 
-    save_asc_files_in_dir_to_csv(source_dir, dest_dir)
+    save_asc_files_in_dir_to_csv(source_dir, dest_dir, is_include_title=include_title)
 
 

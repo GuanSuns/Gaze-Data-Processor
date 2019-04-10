@@ -7,10 +7,18 @@ The python program to clean and process the gaze data
 - **Usage**: python data_cleaning.py  source_dir  dest_dir  \[whether to include titles in txt file\]
     - It will transform all the asc files under the source dir to txt (or csv) files, and save the generated files to the dest_dir
     - An Excel file that contains the meta data of each trial will also be generated under the dest_dir
-- **Source**: data_cleaning.py
+- **Source Code**: data_cleaning.py
 
-## Statistics
-
-- **Source**: data_stat.py
+## Statistics (Use the generated txt/csv files)
+- **Usage**: python data_stat.py source_dir saved_dir
+    - It will do statistics analysis for each trial (csv/txt files under source_dir) and save the result in an Excel file under the saved_dir
+- **Source Code**: data_stat.py
     - Function do\_per\_game\_stat is not used currently, which aims to do stat for each game (one game includes many trials)
-     
+
+## All in one command
+- **Usage**: python do\_cleaning\_and\_stat.py source_dir  dest_dir  \[whether to include titles in txt file\]
+    - It will do both data cleaning (processing) and statistics analysis
+    - source_dir: the directory saving the asc files
+    - dest_dir: the directory saving the csv/txt and results (Excel) files.
+- **Source Code**: do\_cleaning\_and\_stat.py
+  

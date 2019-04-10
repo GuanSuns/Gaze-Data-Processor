@@ -239,6 +239,7 @@ def do_stat():
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         print('Usage: python data_stat.py source_dir saved_dir')
+        exit(1)
 
     source_dir = sys.argv[1]
     saved_dir = sys.argv[2]
