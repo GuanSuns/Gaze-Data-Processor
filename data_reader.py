@@ -209,6 +209,7 @@ def read_gaze_data_csv_file(fname, separator=',', pos_separator=','):
                 posY = float(pos_data_list[2*j+1])
                 pos_list.append((posX, posY))
             frameid2pos[frameid] = pos_list
+
     return frameid2pos, frameid2action, frameid2duration, frameid2unclipped_reward, frameid2episode, frameid2score, frameid_list
 
 
