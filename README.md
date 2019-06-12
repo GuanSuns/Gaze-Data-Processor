@@ -15,6 +15,14 @@ The python program to clean and process the gaze data
 - **Source Code**: data_stat.py
     - Function do\_per\_game\_stat is not used currently, which aims to do stat for each game (one game includes many trials)
 
+
+## Replay
+- **Usage**: python data\_visualizer.py tar\_fname csv\_fname
+	- tar\_fname: the path to the tar file including the png files of each frame
+	- csv\_fname: the path to the txt (csv) file containing the data of each trial.
+- **Source Code**: data\_visualizer.py
+
+
 ## All in one command
 - **Usage**: python do\_cleaning\_and\_stat.py source_dir  dest_dir  \[whether to include titles in txt file\]
     - It will do both data cleaning (processing) and statistics analysis

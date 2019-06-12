@@ -6,6 +6,7 @@ import os
 import time
 import shutil
 import data_reader
+import sys
 # noinspection PyClassHasNoInit
 import tarfile
 import pygame
@@ -202,5 +203,9 @@ def do_testing_visualize_csv():
 
 
 if __name__ == '__main__':
-    do_testing_visualize_csv()
+    if len(sys.argv) < 3:
+        print('Usage: python data_visualizer.py tar_fname csv_fname')
+        exit(1)
+
+
 
