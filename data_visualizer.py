@@ -207,5 +207,9 @@ if __name__ == '__main__':
         print('Usage: python data_visualizer.py tar_fname csv_fname')
         exit(1)
 
+    tar_fname = sys.argv[1]
+    csv_fname = sys.argv[2]
+
+    visualize_csv(tar_fname, csv_fname)
 
 

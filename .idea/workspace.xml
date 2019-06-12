@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="276395a2-29ea-4c81-ada1-5de07d39eccb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_visualizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_visualizer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,14 +77,14 @@
         <counts>
           <entry key="dummy" value="6" />
           <entry key="md" value="1036" />
-          <entry key="py" value="3100" />
+          <entry key="py" value="3196" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="1036" />
           <entry key="PLAIN_TEXT" value="6" />
-          <entry key="Python" value="3100" />
+          <entry key="Python" value="3196" />
         </counts>
       </usages-collector>
     </session>
@@ -95,8 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_cleaning.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="138" column="15" lean-forward="true" selection-start-line="136" selection-start-column="4" selection-end-line="138" selection-end-column="15" />
+            <state relative-caret-position="190">
+              <caret line="142" column="24" lean-forward="true" selection-start-line="142" selection-start-column="24" selection-end-line="142" selection-end-column="24" />
               <folding>
                 <element signature="e#233#242#0" expanded="true" />
                 <marker date="1554939046051" expanded="true" signature="3357:5091" ph="..." />
@@ -110,14 +109,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data_visualizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="209" column="4" selection-start-line="209" selection-start-column="4" selection-end-line="209" selection-end-column="4" />
+            <state relative-caret-position="520">
+              <caret line="213" lean-forward="true" selection-start-line="213" selection-end-line="213" />
               <folding>
                 <element signature="e#106#115#0" expanded="true" />
-                <marker date="1560304389166" expanded="true" signature="777:795" ph="..." />
-                <marker date="1560304389166" expanded="true" signature="1773:3706" ph="..." />
-                <marker date="1560304389166" expanded="true" signature="1855:2014" ph="..." />
-                <marker date="1560304389166" expanded="true" signature="6993:6998" ph="..." />
+                <marker date="1560305001792" expanded="true" signature="777:795" ph="..." />
+                <marker date="1560305001792" expanded="true" signature="1773:3706" ph="..." />
+                <marker date="1560305001792" expanded="true" signature="1855:2014" ph="..." />
+                <marker date="1560305001792" expanded="true" signature="6993:6998" ph="..." />
               </folding>
             </state>
           </provider>
@@ -546,8 +545,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data_cleaning.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="138" column="15" lean-forward="true" selection-start-line="136" selection-start-column="4" selection-end-line="138" selection-end-column="15" />
+        <state relative-caret-position="190">
+          <caret line="142" column="24" lean-forward="true" selection-start-line="142" selection-start-column="24" selection-end-line="142" selection-end-column="24" />
           <folding>
             <element signature="e#233#242#0" expanded="true" />
             <marker date="1554939046051" expanded="true" signature="3357:5091" ph="..." />
@@ -559,14 +558,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data_visualizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="209" column="4" selection-start-line="209" selection-start-column="4" selection-end-line="209" selection-end-column="4" />
+        <state relative-caret-position="520">
+          <caret line="213" lean-forward="true" selection-start-line="213" selection-end-line="213" />
           <folding>
             <element signature="e#106#115#0" expanded="true" />
-            <marker date="1560304389166" expanded="true" signature="777:795" ph="..." />
-            <marker date="1560304389166" expanded="true" signature="1773:3706" ph="..." />
-            <marker date="1560304389166" expanded="true" signature="1855:2014" ph="..." />
-            <marker date="1560304389166" expanded="true" signature="6993:6998" ph="..." />
+            <marker date="1560305001792" expanded="true" signature="777:795" ph="..." />
+            <marker date="1560305001792" expanded="true" signature="1773:3706" ph="..." />
+            <marker date="1560305001792" expanded="true" signature="1855:2014" ph="..." />
+            <marker date="1560305001792" expanded="true" signature="6993:6998" ph="..." />
           </folding>
         </state>
       </provider>
