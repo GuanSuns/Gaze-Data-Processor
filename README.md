@@ -20,6 +20,9 @@ The python program to clean and process the gaze data
 - **Usage**: python data\_visualizer.py tar\_fname csv\_fname
 	- tar\_fname: the path to the tar file including the png files of each frame
 	- csv\_fname: the path to the txt (csv) file containing the data of each trial.
+- **Control**: 
+    - You can control the replay using keyboard. Try pressing esc/space/up/down/left/right.
+    - Use esc to safely terminate the program.
 - **Source Code**: data\_visualizer.py
 
 
